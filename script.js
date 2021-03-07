@@ -1,71 +1,102 @@
-/* Задание на урок:
+"use strict";
 
-1) Первую часть задания повторить по уроку
+let a = 5;
+let b = a;
 
-2) Создать функцию showMyDB, которая будет проверять свойство privat. Если стоит в позиции
-false - выводит в консоль главный объект программы
+b = b + 5;
 
-3) Создать функцию writeYourGenres в которой пользователь будет 3 раза отвечать на вопрос 
-"Ваш любимый жанр под номером ${номер по порядку}". Каждый ответ записывается в массив данных
-genres
+console.log(b);
+console.log(a);
 
-P.S. Функции вызывать не обязательно*/
-
-'use strict';
-
-
-let numberOfFilms;
-
-function start() {
-    while (numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms)) {
-        numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
-    }
-}
-
-start();
-
-
-console.log('WTF?!');
-
-const personalMovieDB = {
-    count: numberOfFilms,
-    movies: {},
-    actors: {},
-    genres: [],
-    private: false
+const obj = {
+    a: 5,
+    b: 1
 };
 
+const copy = obj; // в   *copy*   передаётся ссылка на   *obj*
 
-function rememberMyFilms() {
-    for (let i = 0; i < 2; i++) {
-        let movieName = prompt('Один из последних просмотренных фильмов?', '');
-        let movieRating = prompt('На сколько оцените его?', '');
-        if (movieName != null && movieName != null && movieName.length < 50 && movieName.length < 50 && movieName != '' && movieName != '') {
-            personalMovieDB.movies[movieName] = movieRating;
-        } else {
-            i--;
-            continue;
-        }
+copy.a = 10;
+
+console.log(copy);
+console.log(obj);
+
+function copyObj(mainObj) {
+    let objCopy = {};
+
+    for (let key in mainObj) {
+        objCopy[key] = mainObj[key];
     }
+    return objCopy;
 }
 
-rememberMyFilms();
-
-
-function showMyDB() {
-    if (!personalMovieDB.private) {
-        console.log(personalMovieDB);
-    } else {
-        console.log('Access error');
+const numbers = {
+    a: 2,
+    b: 5,
+    c: {
+        x: 7,
+        y: 4
     }
+};
+
+const newNumbers = copyObj(numbers);
+
+console.log(newNumbers);
+
+const add = {
+    d: 17,
+    i: 20
+};
+
+console.log(Object.assign(numbers, add));
+
+const clone = Object.assign({}, numbers);
+
+clone.c.x = 128;
+clone.d = 128;
+
+console.log(clone);
+console.log(numbers);
+
+
+console.log("----------------------------------------------");
+
+const oldArr = ['a', 'b', 'c', ['d', 'e']];
+const newArr = oldArr.slice();
+
+newArr[1] = 'asdasd';
+newArr[3][1] = 'ccccc';
+console.log(newArr);
+console.log(oldArr);
+
+
+const video = ['youtube', 'vimeo', 'rutube'],
+    blogs = ['wordpress', 'livejournal', 'blogger'],
+    intenet = [...video, ...blogs, 'vk', 'facebook'];
+
+console.log("-----------------------------------------");
+console.log(intenet);
+
+function logger(a, b, c) {
+    console.log(a);
+    console.log(b);
+    console.log(c);
 }
 
-function setFavoriteGenres() {
-    for (let i = 0; i < 3; i++) {
-        personalMovieDB.genres[i]=prompt(`Ваш #${i+1} любимый жанр: `, '');
-    }
-}
+const num = [2, 25, 5, 7, 13];
 
-setFavoriteGenres();
+logger(...num);
 
-console.log(personalMovieDB);
+const array = ["a", "b"];
+const newArray = [...array];
+
+const q = {
+    one: 1,
+    two: 2
+};
+
+const newObj = {
+    ...q
+};
+
+console.log("-----------------------------------");
+console.log(newObj);
