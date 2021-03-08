@@ -1,31 +1,67 @@
-"use strict";
+/* Задание на урок:
 
-let str = "some";
-let strObj = new String(str);
+1) У нас уже есть рабочее приложение, состоящее из отдельных функций. Представьте, что
+перед вами стоит задача переписать его так, чтобы все функции стали методами объекта personalMovieDB
+Такое случается в реальных продуктах при смене технологий или подхода к архитектуре программы
 
-console.log(typeof (str));
-console.log(typeof (strObj));
+2) Создать метод toggleVisibleMyDB, который при вызове будет проверять свойство privat. Если оно false - он
+переключает его в true, если true - переключает в false. Протестировать вместе с showMyDB.
+
+3) В методе writeYourGenres запретить пользователю нажать кнопку "отмена" или оставлять пустую строку. 
+Если он это сделал - возвращать его к этому же вопросу. После того, как все жанры введены - 
+при помощи метода forEach вывести в консоль сообщения в таком виде:
+"Любимый жанр #(номер по порядку, начиная с 1) - это (название из массива)"*/
+
+'use strict';
+
+// Код возьмите из предыдущего домашнего задания
 
 
-console.dir([1, 2, 3]);
+const personalMovieDB = {
+    count: 0,
+    movies: {},
+    actors: {},
+    genres: [],
+    private: false,
 
-const soldier = {
-    health: 400,
-    armour: 100
+    setCount: function () {
+        while (this.count == '' || this.count == null || isNaN(this.count)) {
+            this.count = +prompt('Сколько фильмов вы уже посмотрели?', '');
+        }
+    },
+
+    rememberMyFilms: function () {
+        for (let i = 0; i < 2; i++) {
+            let movieName = prompt('Один из последних просмотренных фильмов?', '');
+            let movieRating = prompt('На сколько оцените его?', '');
+            if (movieName != null && movieName != null && movieName.length < 50 && movieName.length < 50 && movieName != '' && movieName != '') {
+                this.movies[movieName] = movieRating;
+            } else {
+                i--;
+                continue;
+            }
+        }
+    },
+
+    showDB: function () {
+        if (!this.private) {
+            console.log(this);
+        } else {
+            console.log('Access error');
+        }
+    },
+
+    setFavoriteGenres: function () {
+        for (let i = 0; i < 3; i++) {
+            this.genres[i] = prompt(`Ваш #${i+1} любимый жанр: `, '');
+        }
+
+        this.genres.forEach((value, i) => {
+            console.log(`Любимый жанр #${i+1} - ${value}`);
+        });
+    },
+
+    toggleVisibleMyDB: function () {
+        this.private = !this.private;
+    }
 };
-
-const john = Object.create(soldier);
-
-// const john = {
-//     health: 100
-// };
-
-// john.__proto__ = soldier;   // Устаревший синтаксис
-
-// Object.setPrototypeOf(john, soldier);
-
-// console.log(john.armour);
-
-
-console.log(john);
-console.log(john.armour);
