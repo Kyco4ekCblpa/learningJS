@@ -1,46 +1,49 @@
 "use strict";
 
-//--------------- To string
+//1
+// let x = 5; alert(x++);
 
-// 1)
-// console.log(typeof(String(null)));
-// console.log(typeof(String(4)));
+//2
+// console.log(typeof([] + false - null + true));
+// console.log([] + false - null + true);
+// console.log(typeof ([] + false)); // false // в таких случаях массив преобразовывается в строку 
+// console.log(typeof ([] + false - null)); // NaN // возвращается при выполеннии не математических операций 
+// console.log(typeof ([] + false - null + true)); // NaN // возвращается при выполеннии не математических операций 
 
-// 2)
-// console.log(typeof (null + ''));
-// console.log(typeof (5 + ''));
-// const num = 5;
-// console.log("https://vk.com/catalog/" + num);
-// const fontSize = 26 + 'px';
+//3
+// let y = 1; let x = y = 2; alert(x);
+// console.log(x); // 2
+// console.log(y); // 2
 
+//4
+// console.log([1, 2] + 1 + 2); // "12" // Помним что массив преобразовывается в строку
+// console.log(typeof([1, 2] + 1 + 2)); // "1,212" // Помним что массив преобразовывается в строку
 
+//5
+// alert( "1"[0] ); // "1"
 
-//--------------- To number
+//6
+// console.log(2 && 1 && null && 0 && undefined); // null // Оператор "и" запинается на лжи, и возрващает текущее значение
+// console.log(typeof (2 && 1 && null && 0 && undefined)); 
 
-// 1)
-// console.log(typeof(Number('4')));
+//7
+// console.log(!!(1 && 2)); // true // оператор !! превращает в boolean тип данных
+// console.log(1 && 2); // 2
 
-// 2)
-// console.log(typeof (+'5'));
+//8
+// alert( null || 2 && 3 || 4 ); // 3 // У оператора "И" выше приоритет чем у "или",
+// он возвращает последнее значение, тоесть "3", а "или" запинается на правде и возвращает первую "правду" (3)
 
-// 3)
-// console.log(typeof(parseInt("15px", 10)));
-// let answ = +prompt("Hello", "");
+//9
+// let a = [1, 2, 3],
+//     b = [1, 2, 3];
+// console.log(a == b); // false, a != b потому что а и b это просто два разных зранилища информации, одинаковая она или нет - роли не играет
 
+//10
+// console.log(+"Infinity");
 
-//--------------- To boolean
+//11
+// console.log("Ёжик" > "Яблоко"); // здесь работает кодировка Unicode, срвнение идёт по-символьно, первый же символ 'Ё' < 'Я'
 
-// 1)
-// const falseValues = [0, '', null, undefined, NaN];
-// let switcher = 1;
-// if (switcher) {
-//     console.log('Working...');
-// };
-
-// 2)
-// console.log(typeof(Boolean('4')));
-// console.log(Boolean('4'));
-
-// 3)
-// console.log(typeof(!"4"));
-// console.log(!!"4");
+//12
+// console.log(0 || "" || 2 || undefined || true || falsе); // 2 // Помним что "или" запинается на первой правде
