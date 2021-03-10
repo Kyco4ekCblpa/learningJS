@@ -1,67 +1,46 @@
-/* Задание на урок:
+"use strict";
 
-1) У нас уже есть рабочее приложение, состоящее из отдельных функций. Представьте, что
-перед вами стоит задача переписать его так, чтобы все функции стали методами объекта personalMovieDB
-Такое случается в реальных продуктах при смене технологий или подхода к архитектуре программы
+//--------------- To string
 
-2) Создать метод toggleVisibleMyDB, который при вызове будет проверять свойство privat. Если оно false - он
-переключает его в true, если true - переключает в false. Протестировать вместе с showMyDB.
+// 1)
+// console.log(typeof(String(null)));
+// console.log(typeof(String(4)));
 
-3) В методе writeYourGenres запретить пользователю нажать кнопку "отмена" или оставлять пустую строку. 
-Если он это сделал - возвращать его к этому же вопросу. После того, как все жанры введены - 
-при помощи метода forEach вывести в консоль сообщения в таком виде:
-"Любимый жанр #(номер по порядку, начиная с 1) - это (название из массива)"*/
-
-'use strict';
-
-// Код возьмите из предыдущего домашнего задания
+// 2)
+// console.log(typeof (null + ''));
+// console.log(typeof (5 + ''));
+// const num = 5;
+// console.log("https://vk.com/catalog/" + num);
+// const fontSize = 26 + 'px';
 
 
-const personalMovieDB = {
-    count: 0,
-    movies: {},
-    actors: {},
-    genres: [],
-    private: false,
 
-    setCount: function () {
-        while (this.count == '' || this.count == null || isNaN(this.count)) {
-            this.count = +prompt('Сколько фильмов вы уже посмотрели?', '');
-        }
-    },
+//--------------- To number
 
-    rememberMyFilms: function () {
-        for (let i = 0; i < 2; i++) {
-            let movieName = prompt('Один из последних просмотренных фильмов?', '');
-            let movieRating = prompt('На сколько оцените его?', '');
-            if (movieName != null && movieName != null && movieName.length < 50 && movieName.length < 50 && movieName != '' && movieName != '') {
-                this.movies[movieName] = movieRating;
-            } else {
-                i--;
-                continue;
-            }
-        }
-    },
+// 1)
+// console.log(typeof(Number('4')));
 
-    showDB: function () {
-        if (!this.private) {
-            console.log(this);
-        } else {
-            console.log('Access error');
-        }
-    },
+// 2)
+// console.log(typeof (+'5'));
 
-    setFavoriteGenres: function () {
-        for (let i = 0; i < 3; i++) {
-            this.genres[i] = prompt(`Ваш #${i+1} любимый жанр: `, '');
-        }
+// 3)
+// console.log(typeof(parseInt("15px", 10)));
+// let answ = +prompt("Hello", "");
 
-        this.genres.forEach((value, i) => {
-            console.log(`Любимый жанр #${i+1} - ${value}`);
-        });
-    },
 
-    toggleVisibleMyDB: function () {
-        this.private = !this.private;
-    }
-};
+//--------------- To boolean
+
+// 1)
+// const falseValues = [0, '', null, undefined, NaN];
+// let switcher = 1;
+// if (switcher) {
+//     console.log('Working...');
+// };
+
+// 2)
+// console.log(typeof(Boolean('4')));
+// console.log(Boolean('4'));
+
+// 3)
+// console.log(typeof(!"4"));
+// console.log(!!"4");
